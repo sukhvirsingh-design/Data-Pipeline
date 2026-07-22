@@ -1,4 +1,5 @@
-# This is an Enterprise Service Bus (ESB) or Hub-and-Spoke architectural approach, operating as a Data Pipeline.
+# This is an Enterprise Service Bus (ESB) 
+Hub-and-Spoke architectural approach, operating as a Data Pipeline.
 
 In business logic, this approach treats Yellow Dog and your payment gateways as peripheral transactional engines (the spokes) that feed execution data up into Salesforce, which acts as the centralized financial core (the hub).
 
