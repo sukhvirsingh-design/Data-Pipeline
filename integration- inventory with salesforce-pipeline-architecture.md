@@ -45,6 +45,16 @@ Yellow Dog (inventory / COGS)
         -> Revenue Management (dashboards, forecasting)
 ```
 
+Implementation Methods 
+
+To execute this approach, businesses typically use one of three integration strategies:
+
+Middleware/ETL Approach: Utilizing tools like MuleSoft (owned by Salesforce), Boomi, or Workato. These platforms extract the data from the gateway and Yellow Dog daily, transform the data into a matching format, and load it into Salesforce.
+
+Custom API Integration: Developers write custom scripts utilizing REST APIs to automatically push summary data from the payment gateway and Yellow Dog directly into Salesforce custom objects at the end of every business day.
+
+Data Lakehouse Mirroring: Large hospitality groups often dump raw logs from all three systems into a cloud data warehouse (like Snowflake or Salesforce Data Cloud). They then calculate the revenue there, using Salesforce purely to visualize the final reports.
+
 ## Open questions / next steps
 
 - Confirm auth method between integration layer and each source system (API keys, OAuth)
