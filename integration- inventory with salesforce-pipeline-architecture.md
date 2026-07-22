@@ -1,10 +1,28 @@
-# F&B Data Pipeline Architecture
+# This is an Enterprise Service Bus (ESB) or Hub-and-Spoke architectural approach, operating as a Data Pipeline.
+
+In business logic, this approach treats Yellow Dog and your payment gateways as peripheral transactional engines (the spokes) that feed execution data up into Salesforce, which acts as the centralized financial core (the hub).
 
 ## Overview
 
 This document describes the data pipeline connecting point-of-sale transactions, inventory/COGS management, and centralized reporting for platform operations.
 
 The goal is to give leadership a single, trustworthy view of financial performance by combining transaction-level revenue data with inventory-level cost data, rather than reconciling the two manually.
+
+## The Strategic Pillars of This Approach
+
+Functional Specialization: You treat each system as a master of its own domain. The Payment Gateway is trusted exclusively for high-security financial settlement. Yellow Dog is trusted exclusively for complex, localized physical inventory and margin tracking. Salesforce is trusted exclusively for macro corporate aggregation, relationship tracking, and executive forecasting.
+
+Separation of Concerns: You decouple high-volume, low-latency operational data from corporate analytical data. Salesforce never needs to process a credit card swipe or track a slice of cheese in real time. By keeping those micro-transactions inside the gateway and Yellow Dog, you keep your Salesforce database clean, fast, and focused strictly on high-level financial tracking.
+
+Asynchronous Consolidation: The approach relies on the business logic that operational data and financial accounting data do not need to move at the same speed. The gateway and Yellow Dog execute transactions at millisecond speeds on the ground, while Salesforce aggregates that data at a slower, broader pace (usually via nightly batches) to provide the overarching business reality.
+
+## System Architecture Roles
+
+The Gateways (The Intake): Payment processors (e.g., Stripe, FreedomPay, Shift4) serve strictly as the cash collection mechanism. They validate credit cards, process the settlement, and hold the raw transaction log.
+
+Yellow Dog (The Operations Engine): Yellow Dog acts as the context layer. It maps those gateway transactions to physical inventory, deducting stock, tracking the Cost of Goods Sold (COGS), and calculating the net margin of what was sold.
+
+Salesforce (The Single Source of Truth): Salesforce acts as the central repository. It doesn't process the credit cards or count the inventory; instead, it ingests the combined data to provide leadership with high-level revenue dashboards, customer lifetime value (LTV) tracking, and financial forecasting.
 
 ## Components
 
